@@ -1,0 +1,2 @@
+ID,File,Line,Column,Scanner,Rule,CWE,Severity,Title,Description
+FF-Code_001.cpp-36-0-927d18,Code_001.cpp,36,5,flawfinder,random/srand,CWE-327,medium,Potential random risk: srand,This function is not sufficiently random for security-related functions such as key and nonce creation (CWE-327).

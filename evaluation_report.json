@@ -1,0 +1,1682 @@
+{
+  "summary": {
+    "total_cases": 48,
+    "total_orig_findings": 72,
+    "total_orig_flawfinder_hits": 0,
+    "models": {
+      "claude-opus-4-1-20250805": {
+        "flawfinder_hits": 0,
+        "fixed_cases": 0,
+        "compile_ok": 21
+      },
+      "gpt-4.1-2025-04-14": {
+        "flawfinder_hits": 0,
+        "fixed_cases": 0,
+        "compile_ok": 15
+      },
+      "gpt-5-2025-08-07": {
+        "flawfinder_hits": 0,
+        "fixed_cases": 0,
+        "compile_ok": 16
+      }
+    }
+  },
+  "cases": [
+    {
+      "case": "File_01",
+      "original_file": "Code_001.c",
+      "scanners": [
+        "cppcheck",
+        "flawfinder",
+        "semgrep"
+      ],
+      "dataset_findings_count": 3,
+      "orig_flawfinder_count": 0,
+      "orig_flawfinder_details": [],
+      "orig_compile": false,
+      "models": {
+        "claude-opus-4-1-20250805": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-4.1-2025-04-14": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-5-2025-08-07": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        }
+      }
+    },
+    {
+      "case": "File_02",
+      "original_file": "Code_003.cpp",
+      "scanners": [
+        "cppcheck",
+        "flawfinder"
+      ],
+      "dataset_findings_count": 2,
+      "orig_flawfinder_count": 0,
+      "orig_flawfinder_details": [],
+      "orig_compile": false,
+      "models": {
+        "claude-opus-4-1-20250805": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-4.1-2025-04-14": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-5-2025-08-07": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        }
+      }
+    },
+    {
+      "case": "File_03",
+      "original_file": "Code_001.cpp",
+      "scanners": [
+        "cppcheck",
+        "flawfinder"
+      ],
+      "dataset_findings_count": 2,
+      "orig_flawfinder_count": 0,
+      "orig_flawfinder_details": [],
+      "orig_compile": false,
+      "models": {
+        "claude-opus-4-1-20250805": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": true,
+          "has_response": true
+        },
+        "gpt-4.1-2025-04-14": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-5-2025-08-07": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": true,
+          "has_response": true
+        }
+      }
+    },
+    {
+      "case": "File_04",
+      "original_file": "Code_001.cpp",
+      "scanners": [
+        "cppcheck",
+        "flawfinder",
+        "semgrep",
+        "snyk"
+      ],
+      "dataset_findings_count": 4,
+      "orig_flawfinder_count": 0,
+      "orig_flawfinder_details": [],
+      "orig_compile": true,
+      "models": {
+        "claude-opus-4-1-20250805": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": true,
+          "has_response": true
+        },
+        "gpt-4.1-2025-04-14": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": true,
+          "has_response": true
+        },
+        "gpt-5-2025-08-07": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        }
+      }
+    },
+    {
+      "case": "File_05",
+      "original_file": "Code_001.cpp",
+      "scanners": [
+        "cppcheck",
+        "flawfinder",
+        "snyk"
+      ],
+      "dataset_findings_count": 3,
+      "orig_flawfinder_count": 0,
+      "orig_flawfinder_details": [],
+      "orig_compile": false,
+      "models": {
+        "claude-opus-4-1-20250805": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-4.1-2025-04-14": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-5-2025-08-07": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        }
+      }
+    },
+    {
+      "case": "File_06",
+      "original_file": "Code_001.cpp",
+      "scanners": [
+        "cppcheck",
+        "flawfinder",
+        "semgrep",
+        "snyk"
+      ],
+      "dataset_findings_count": 4,
+      "orig_flawfinder_count": 0,
+      "orig_flawfinder_details": [],
+      "orig_compile": true,
+      "models": {
+        "claude-opus-4-1-20250805": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": true,
+          "has_response": true
+        },
+        "gpt-4.1-2025-04-14": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": true,
+          "has_response": true
+        },
+        "gpt-5-2025-08-07": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": true,
+          "has_response": true
+        }
+      }
+    },
+    {
+      "case": "File_07",
+      "original_file": "Code_001.c",
+      "scanners": [
+        "flawfinder",
+        "snyk"
+      ],
+      "dataset_findings_count": 2,
+      "orig_flawfinder_count": 0,
+      "orig_flawfinder_details": [],
+      "orig_compile": false,
+      "models": {
+        "claude-opus-4-1-20250805": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": true,
+          "has_response": true
+        },
+        "gpt-4.1-2025-04-14": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-5-2025-08-07": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": true,
+          "has_response": true
+        }
+      }
+    },
+    {
+      "case": "File_08",
+      "original_file": "Code_001.c",
+      "scanners": [
+        "flawfinder",
+        "snyk"
+      ],
+      "dataset_findings_count": 2,
+      "orig_flawfinder_count": 0,
+      "orig_flawfinder_details": [],
+      "orig_compile": false,
+      "models": {
+        "claude-opus-4-1-20250805": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": true,
+          "has_response": true
+        },
+        "gpt-4.1-2025-04-14": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-5-2025-08-07": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": true,
+          "has_response": true
+        }
+      }
+    },
+    {
+      "case": "File_09",
+      "original_file": "Code_001.c",
+      "scanners": [
+        "flawfinder",
+        "semgrep",
+        "snyk"
+      ],
+      "dataset_findings_count": 3,
+      "orig_flawfinder_count": 0,
+      "orig_flawfinder_details": [],
+      "orig_compile": true,
+      "models": {
+        "claude-opus-4-1-20250805": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": true,
+          "has_response": true
+        },
+        "gpt-4.1-2025-04-14": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": true,
+          "has_response": true
+        },
+        "gpt-5-2025-08-07": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": true,
+          "has_response": true
+        }
+      }
+    },
+    {
+      "case": "File_10",
+      "original_file": "Code_001.c",
+      "scanners": [
+        "flawfinder",
+        "semgrep",
+        "snyk"
+      ],
+      "dataset_findings_count": 3,
+      "orig_flawfinder_count": 0,
+      "orig_flawfinder_details": [],
+      "orig_compile": false,
+      "models": {
+        "claude-opus-4-1-20250805": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-4.1-2025-04-14": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-5-2025-08-07": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        }
+      }
+    },
+    {
+      "case": "File_11",
+      "original_file": "Code_001.cs",
+      "scanners": [
+        "semgrep"
+      ],
+      "dataset_findings_count": 1,
+      "orig_flawfinder_count": 0,
+      "orig_flawfinder_details": [],
+      "orig_compile": null,
+      "models": {
+        "claude-opus-4-1-20250805": {
+          "file": "New_generated_code_01.cs",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": null,
+          "has_response": true
+        },
+        "gpt-4.1-2025-04-14": {
+          "file": "New_generated_code_01.cs",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": null,
+          "has_response": true
+        },
+        "gpt-5-2025-08-07": {
+          "file": "New_generated_code_01.cs",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": null,
+          "has_response": true
+        }
+      }
+    },
+    {
+      "case": "File_12",
+      "original_file": "Code_001.cpp",
+      "scanners": [
+        "flawfinder",
+        "snyk"
+      ],
+      "dataset_findings_count": 2,
+      "orig_flawfinder_count": 0,
+      "orig_flawfinder_details": [],
+      "orig_compile": false,
+      "models": {
+        "claude-opus-4-1-20250805": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-4.1-2025-04-14": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-5-2025-08-07": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        }
+      }
+    },
+    {
+      "case": "File_13",
+      "original_file": "Code_001.c",
+      "scanners": [
+        "flawfinder",
+        "snyk"
+      ],
+      "dataset_findings_count": 2,
+      "orig_flawfinder_count": 0,
+      "orig_flawfinder_details": [],
+      "orig_compile": false,
+      "models": {
+        "claude-opus-4-1-20250805": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-4.1-2025-04-14": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-5-2025-08-07": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        }
+      }
+    },
+    {
+      "case": "File_14",
+      "original_file": "Code_001.cpp",
+      "scanners": [
+        "snyk"
+      ],
+      "dataset_findings_count": 1,
+      "orig_flawfinder_count": 0,
+      "orig_flawfinder_details": [],
+      "orig_compile": false,
+      "models": {
+        "claude-opus-4-1-20250805": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": true,
+          "has_response": true
+        },
+        "gpt-4.1-2025-04-14": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-5-2025-08-07": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": true,
+          "has_response": true
+        }
+      }
+    },
+    {
+      "case": "File_15",
+      "original_file": "Code_001.c",
+      "scanners": [
+        "flawfinder",
+        "snyk"
+      ],
+      "dataset_findings_count": 2,
+      "orig_flawfinder_count": 0,
+      "orig_flawfinder_details": [],
+      "orig_compile": false,
+      "models": {
+        "claude-opus-4-1-20250805": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-4.1-2025-04-14": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-5-2025-08-07": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        }
+      }
+    },
+    {
+      "case": "File_16",
+      "original_file": "Code_003.cpp",
+      "scanners": [
+        "snyk"
+      ],
+      "dataset_findings_count": 1,
+      "orig_flawfinder_count": 0,
+      "orig_flawfinder_details": [],
+      "orig_compile": false,
+      "models": {
+        "claude-opus-4-1-20250805": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-4.1-2025-04-14": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-5-2025-08-07": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        }
+      }
+    },
+    {
+      "case": "File_17",
+      "original_file": "Code_001.cpp",
+      "scanners": [
+        "cppcheck"
+      ],
+      "dataset_findings_count": 1,
+      "orig_flawfinder_count": 0,
+      "orig_flawfinder_details": [],
+      "orig_compile": false,
+      "models": {
+        "claude-opus-4-1-20250805": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": true,
+          "has_response": true
+        },
+        "gpt-4.1-2025-04-14": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": true,
+          "has_response": true
+        },
+        "gpt-5-2025-08-07": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        }
+      }
+    },
+    {
+      "case": "File_18",
+      "original_file": "Code_001.cpp",
+      "scanners": [
+        "cppcheck"
+      ],
+      "dataset_findings_count": 1,
+      "orig_flawfinder_count": 0,
+      "orig_flawfinder_details": [],
+      "orig_compile": false,
+      "models": {
+        "claude-opus-4-1-20250805": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": true,
+          "has_response": true
+        },
+        "gpt-4.1-2025-04-14": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-5-2025-08-07": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": true,
+          "has_response": true
+        }
+      }
+    },
+    {
+      "case": "File_19",
+      "original_file": "Code_001.cpp",
+      "scanners": [
+        "cppcheck",
+        "snyk"
+      ],
+      "dataset_findings_count": 2,
+      "orig_flawfinder_count": 0,
+      "orig_flawfinder_details": [],
+      "orig_compile": false,
+      "models": {
+        "claude-opus-4-1-20250805": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-4.1-2025-04-14": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-5-2025-08-07": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        }
+      }
+    },
+    {
+      "case": "File_20",
+      "original_file": "Code_001.c",
+      "scanners": [
+        "cppcheck"
+      ],
+      "dataset_findings_count": 1,
+      "orig_flawfinder_count": 0,
+      "orig_flawfinder_details": [],
+      "orig_compile": false,
+      "models": {
+        "claude-opus-4-1-20250805": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": true,
+          "has_response": true
+        },
+        "gpt-4.1-2025-04-14": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": true,
+          "has_response": true
+        },
+        "gpt-5-2025-08-07": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": true,
+          "has_response": true
+        }
+      }
+    },
+    {
+      "case": "File_21",
+      "original_file": "Code_001.c",
+      "scanners": [
+        "cppcheck",
+        "flawfinder"
+      ],
+      "dataset_findings_count": 2,
+      "orig_flawfinder_count": 0,
+      "orig_flawfinder_details": [],
+      "orig_compile": true,
+      "models": {
+        "claude-opus-4-1-20250805": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-4.1-2025-04-14": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": true,
+          "has_response": true
+        },
+        "gpt-5-2025-08-07": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": true,
+          "has_response": true
+        }
+      }
+    },
+    {
+      "case": "File_22",
+      "original_file": "Code_001.cpp",
+      "scanners": [
+        "cppcheck"
+      ],
+      "dataset_findings_count": 1,
+      "orig_flawfinder_count": 0,
+      "orig_flawfinder_details": [],
+      "orig_compile": false,
+      "models": {
+        "claude-opus-4-1-20250805": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": true,
+          "has_response": true
+        },
+        "gpt-4.1-2025-04-14": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-5-2025-08-07": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": true,
+          "has_response": true
+        }
+      }
+    },
+    {
+      "case": "File_23",
+      "original_file": "Code_001.cpp",
+      "scanners": [
+        "cppcheck"
+      ],
+      "dataset_findings_count": 1,
+      "orig_flawfinder_count": 0,
+      "orig_flawfinder_details": [],
+      "orig_compile": true,
+      "models": {
+        "claude-opus-4-1-20250805": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": true,
+          "has_response": true
+        },
+        "gpt-4.1-2025-04-14": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-5-2025-08-07": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        }
+      }
+    },
+    {
+      "case": "File_24",
+      "original_file": "Code_001.cpp",
+      "scanners": [
+        "cppcheck"
+      ],
+      "dataset_findings_count": 1,
+      "orig_flawfinder_count": 0,
+      "orig_flawfinder_details": [],
+      "orig_compile": false,
+      "models": {
+        "claude-opus-4-1-20250805": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-4.1-2025-04-14": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-5-2025-08-07": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        }
+      }
+    },
+    {
+      "case": "File_25",
+      "original_file": "Code_001.cpp",
+      "scanners": [
+        "cppcheck"
+      ],
+      "dataset_findings_count": 1,
+      "orig_flawfinder_count": 0,
+      "orig_flawfinder_details": [],
+      "orig_compile": false,
+      "models": {
+        "claude-opus-4-1-20250805": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-4.1-2025-04-14": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-5-2025-08-07": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        }
+      }
+    },
+    {
+      "case": "File_26",
+      "original_file": "Code_001.c",
+      "scanners": [
+        "cppcheck",
+        "flawfinder"
+      ],
+      "dataset_findings_count": 2,
+      "orig_flawfinder_count": 0,
+      "orig_flawfinder_details": [],
+      "orig_compile": false,
+      "models": {
+        "claude-opus-4-1-20250805": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": true,
+          "has_response": true
+        },
+        "gpt-4.1-2025-04-14": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-5-2025-08-07": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": true,
+          "has_response": true
+        }
+      }
+    },
+    {
+      "case": "File_27",
+      "original_file": "Code_001.cpp",
+      "scanners": [
+        "cppcheck"
+      ],
+      "dataset_findings_count": 1,
+      "orig_flawfinder_count": 0,
+      "orig_flawfinder_details": [],
+      "orig_compile": true,
+      "models": {
+        "claude-opus-4-1-20250805": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": true,
+          "has_response": true
+        },
+        "gpt-4.1-2025-04-14": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": true,
+          "has_response": true
+        },
+        "gpt-5-2025-08-07": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        }
+      }
+    },
+    {
+      "case": "File_28",
+      "original_file": "Code_001.c",
+      "scanners": [
+        "cppcheck"
+      ],
+      "dataset_findings_count": 1,
+      "orig_flawfinder_count": 0,
+      "orig_flawfinder_details": [],
+      "orig_compile": false,
+      "models": {
+        "claude-opus-4-1-20250805": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-4.1-2025-04-14": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-5-2025-08-07": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        }
+      }
+    },
+    {
+      "case": "File_29",
+      "original_file": "Code_001.c",
+      "scanners": [
+        "cppcheck"
+      ],
+      "dataset_findings_count": 1,
+      "orig_flawfinder_count": 0,
+      "orig_flawfinder_details": [],
+      "orig_compile": false,
+      "models": {
+        "claude-opus-4-1-20250805": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-4.1-2025-04-14": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-5-2025-08-07": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        }
+      }
+    },
+    {
+      "case": "File_30",
+      "original_file": "Code_001.c",
+      "scanners": [
+        "flawfinder"
+      ],
+      "dataset_findings_count": 1,
+      "orig_flawfinder_count": 0,
+      "orig_flawfinder_details": [],
+      "orig_compile": true,
+      "models": {
+        "claude-opus-4-1-20250805": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-4.1-2025-04-14": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": true,
+          "has_response": true
+        },
+        "gpt-5-2025-08-07": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        }
+      }
+    },
+    {
+      "case": "File_31",
+      "original_file": "Code_001.cpp",
+      "scanners": [
+        "flawfinder"
+      ],
+      "dataset_findings_count": 1,
+      "orig_flawfinder_count": 0,
+      "orig_flawfinder_details": [],
+      "orig_compile": true,
+      "models": {
+        "claude-opus-4-1-20250805": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": true,
+          "has_response": true
+        },
+        "gpt-4.1-2025-04-14": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": true,
+          "has_response": true
+        },
+        "gpt-5-2025-08-07": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": true,
+          "has_response": true
+        }
+      }
+    },
+    {
+      "case": "File_32",
+      "original_file": "Code_001.c",
+      "scanners": [
+        "flawfinder"
+      ],
+      "dataset_findings_count": 1,
+      "orig_flawfinder_count": 0,
+      "orig_flawfinder_details": [],
+      "orig_compile": true,
+      "models": {
+        "claude-opus-4-1-20250805": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": true,
+          "has_response": true
+        },
+        "gpt-4.1-2025-04-14": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-5-2025-08-07": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        }
+      }
+    },
+    {
+      "case": "File_33",
+      "original_file": "Code_001.c",
+      "scanners": [
+        "flawfinder"
+      ],
+      "dataset_findings_count": 1,
+      "orig_flawfinder_count": 0,
+      "orig_flawfinder_details": [],
+      "orig_compile": false,
+      "models": {
+        "claude-opus-4-1-20250805": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-4.1-2025-04-14": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-5-2025-08-07": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        }
+      }
+    },
+    {
+      "case": "File_34",
+      "original_file": "Code_001.cpp",
+      "scanners": [
+        "flawfinder"
+      ],
+      "dataset_findings_count": 1,
+      "orig_flawfinder_count": 0,
+      "orig_flawfinder_details": [],
+      "orig_compile": true,
+      "models": {
+        "claude-opus-4-1-20250805": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-4.1-2025-04-14": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": true,
+          "has_response": true
+        },
+        "gpt-5-2025-08-07": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        }
+      }
+    },
+    {
+      "case": "File_35",
+      "original_file": "Code_002.cpp",
+      "scanners": [
+        "flawfinder"
+      ],
+      "dataset_findings_count": 1,
+      "orig_flawfinder_count": 0,
+      "orig_flawfinder_details": [],
+      "orig_compile": false,
+      "models": {
+        "claude-opus-4-1-20250805": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-4.1-2025-04-14": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-5-2025-08-07": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        }
+      }
+    },
+    {
+      "case": "File_36",
+      "original_file": "Code_001.c",
+      "scanners": [
+        "flawfinder"
+      ],
+      "dataset_findings_count": 1,
+      "orig_flawfinder_count": 0,
+      "orig_flawfinder_details": [],
+      "orig_compile": true,
+      "models": {
+        "claude-opus-4-1-20250805": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": true,
+          "has_response": true
+        },
+        "gpt-4.1-2025-04-14": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": true,
+          "has_response": true
+        },
+        "gpt-5-2025-08-07": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": true,
+          "has_response": true
+        }
+      }
+    },
+    {
+      "case": "File_37",
+      "original_file": "Code_001.cpp",
+      "scanners": [
+        "flawfinder"
+      ],
+      "dataset_findings_count": 1,
+      "orig_flawfinder_count": 0,
+      "orig_flawfinder_details": [],
+      "orig_compile": false,
+      "models": {
+        "claude-opus-4-1-20250805": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-4.1-2025-04-14": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-5-2025-08-07": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        }
+      }
+    },
+    {
+      "case": "File_38",
+      "original_file": "Code_001.c",
+      "scanners": [
+        "flawfinder"
+      ],
+      "dataset_findings_count": 1,
+      "orig_flawfinder_count": 0,
+      "orig_flawfinder_details": [],
+      "orig_compile": false,
+      "models": {
+        "claude-opus-4-1-20250805": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-4.1-2025-04-14": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-5-2025-08-07": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        }
+      }
+    },
+    {
+      "case": "File_39",
+      "original_file": "Code_001.c",
+      "scanners": [
+        "flawfinder"
+      ],
+      "dataset_findings_count": 1,
+      "orig_flawfinder_count": 0,
+      "orig_flawfinder_details": [],
+      "orig_compile": false,
+      "models": {
+        "claude-opus-4-1-20250805": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-4.1-2025-04-14": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-5-2025-08-07": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": true,
+          "has_response": true
+        }
+      }
+    },
+    {
+      "case": "File_40",
+      "original_file": "Code_001.c",
+      "scanners": [
+        "flawfinder"
+      ],
+      "dataset_findings_count": 1,
+      "orig_flawfinder_count": 0,
+      "orig_flawfinder_details": [],
+      "orig_compile": true,
+      "models": {
+        "claude-opus-4-1-20250805": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": true,
+          "has_response": true
+        },
+        "gpt-4.1-2025-04-14": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": true,
+          "has_response": true
+        },
+        "gpt-5-2025-08-07": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        }
+      }
+    },
+    {
+      "case": "File_41",
+      "original_file": "Code_001.c",
+      "scanners": [
+        "flawfinder"
+      ],
+      "dataset_findings_count": 1,
+      "orig_flawfinder_count": 0,
+      "orig_flawfinder_details": [],
+      "orig_compile": false,
+      "models": {
+        "claude-opus-4-1-20250805": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": true,
+          "has_response": true
+        },
+        "gpt-4.1-2025-04-14": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-5-2025-08-07": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        }
+      }
+    },
+    {
+      "case": "File_42",
+      "original_file": "Code_004.cpp",
+      "scanners": [
+        "flawfinder"
+      ],
+      "dataset_findings_count": 1,
+      "orig_flawfinder_count": 0,
+      "orig_flawfinder_details": [],
+      "orig_compile": false,
+      "models": {
+        "claude-opus-4-1-20250805": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-4.1-2025-04-14": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-5-2025-08-07": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        }
+      }
+    },
+    {
+      "case": "File_43",
+      "original_file": "Code_002.cpp",
+      "scanners": [
+        "flawfinder"
+      ],
+      "dataset_findings_count": 1,
+      "orig_flawfinder_count": 0,
+      "orig_flawfinder_details": [],
+      "orig_compile": false,
+      "models": {
+        "claude-opus-4-1-20250805": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-4.1-2025-04-14": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-5-2025-08-07": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        }
+      }
+    },
+    {
+      "case": "File_44",
+      "original_file": "Code_001.c",
+      "scanners": [
+        "flawfinder"
+      ],
+      "dataset_findings_count": 1,
+      "orig_flawfinder_count": 0,
+      "orig_flawfinder_details": [],
+      "orig_compile": false,
+      "models": {
+        "claude-opus-4-1-20250805": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-4.1-2025-04-14": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-5-2025-08-07": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        }
+      }
+    },
+    {
+      "case": "File_45",
+      "original_file": "Code_001.cpp",
+      "scanners": [
+        "flawfinder"
+      ],
+      "dataset_findings_count": 1,
+      "orig_flawfinder_count": 0,
+      "orig_flawfinder_details": [],
+      "orig_compile": false,
+      "models": {
+        "claude-opus-4-1-20250805": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-4.1-2025-04-14": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-5-2025-08-07": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        }
+      }
+    },
+    {
+      "case": "File_46",
+      "original_file": "Code_001.c",
+      "scanners": [
+        "flawfinder"
+      ],
+      "dataset_findings_count": 1,
+      "orig_flawfinder_count": 0,
+      "orig_flawfinder_details": [],
+      "orig_compile": true,
+      "models": {
+        "claude-opus-4-1-20250805": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        },
+        "gpt-4.1-2025-04-14": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": true,
+          "has_response": true
+        },
+        "gpt-5-2025-08-07": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": true,
+          "has_response": true
+        }
+      }
+    },
+    {
+      "case": "File_47",
+      "original_file": "Code_001.cpp",
+      "scanners": [
+        "flawfinder"
+      ],
+      "dataset_findings_count": 1,
+      "orig_flawfinder_count": 0,
+      "orig_flawfinder_details": [],
+      "orig_compile": true,
+      "models": {
+        "claude-opus-4-1-20250805": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": true,
+          "has_response": true
+        },
+        "gpt-4.1-2025-04-14": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": true,
+          "has_response": true
+        },
+        "gpt-5-2025-08-07": {
+          "file": "New_generated_code_01.cpp",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": true,
+          "has_response": true
+        }
+      }
+    },
+    {
+      "case": "File_48",
+      "original_file": "Code_001.c",
+      "scanners": [
+        "flawfinder"
+      ],
+      "dataset_findings_count": 1,
+      "orig_flawfinder_count": 0,
+      "orig_flawfinder_details": [],
+      "orig_compile": true,
+      "models": {
+        "claude-opus-4-1-20250805": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": true,
+          "has_response": true
+        },
+        "gpt-4.1-2025-04-14": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": true,
+          "has_response": true
+        },
+        "gpt-5-2025-08-07": {
+          "file": "New_generated_code_01.c",
+          "flawfinder_count": 0,
+          "flawfinder_details": [],
+          "compiled": false,
+          "has_response": true
+        }
+      }
+    }
+  ]
+}

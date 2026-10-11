@@ -1,0 +1,4 @@
+ID,File,Line,Column,Scanner,Rule,CWE,Severity,Title,Description
+FF-code.c-7-0-cf97cc,code.c,7,5,flawfinder,buffer/strcpy,CWE-120,high,Potential buffer risk: strcpy,Does not check for buffer overflows when copying to destination [MS-banned] (CWE-120).
+FF-code.c-5-1-b72be8,code.c,5,5,flawfinder,buffer/char,CWE-119,medium,Potential buffer risk: char,"Statically-sized arrays can be improperly restricted, leading to potential overflows or other issues (CWE-119!/CWE-120)."
+FF-code.c-12-2-291008,code.c,12,5,flawfinder,buffer/char,CWE-119,medium,Potential buffer risk: char,"Statically-sized arrays can be improperly restricted, leading to potential overflows or other issues (CWE-119!/CWE-120)."

@@ -1,0 +1,50 @@
+{
+  "project_name": "AI-SecureCode Audit (File_35)",
+  "language": "cpp",
+  "baseline_count": 3,
+  "remaining_count": 3,
+  "reduced_count": 0,
+  "reduction_rate": 0,
+  "compiler_status": "N/A",
+  "findings": [
+    {
+      "id": "FF-Code_002.cpp-4-0-d1cd26",
+      "file": "Code_002.cpp",
+      "line": 4,
+      "column": 20,
+      "scanner": "flawfinder",
+      "rule": "integer/atoi",
+      "cwe": "CWE-190",
+      "severity": "low",
+      "title": "Potential integer risk: atoi",
+      "description": "Unless checked, the resulting number can exceed the expected range (CWE-190).",
+      "code_snippet": "receivedHour = atoi((char *)payload);"
+    },
+    {
+      "id": "FF-Code_002.cpp-6-1-a42e11",
+      "file": "Code_002.cpp",
+      "line": 6,
+      "column": 22,
+      "scanner": "flawfinder",
+      "rule": "integer/atoi",
+      "cwe": "CWE-190",
+      "severity": "low",
+      "title": "Potential integer risk: atoi",
+      "description": "Unless checked, the resulting number can exceed the expected range (CWE-190).",
+      "code_snippet": "receivedMinute = atoi((char *)payload);"
+    },
+    {
+      "id": "FF-Code_002.cpp-8-2-370ef8",
+      "file": "Code_002.cpp",
+      "line": 8,
+      "column": 22,
+      "scanner": "flawfinder",
+      "rule": "integer/atoi",
+      "cwe": "CWE-190",
+      "severity": "low",
+      "title": "Potential integer risk: atoi",
+      "description": "Unless checked, the resulting number can exceed the expected range (CWE-190).",
+      "code_snippet": "receivedSecond = atoi((char *)payload);"
+    }
+  ]
+}

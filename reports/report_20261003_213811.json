@@ -1,0 +1,50 @@
+{
+  "project_name": "AI-SecureCode Code Audit",
+  "language": "c",
+  "baseline_count": 3,
+  "remaining_count": 3,
+  "reduced_count": 0,
+  "reduction_rate": 0,
+  "compiler_status": "Success",
+  "findings": [
+    {
+      "id": "FF-code.c-7-0-cf97cc",
+      "file": "code.c",
+      "line": 7,
+      "column": 5,
+      "scanner": "flawfinder",
+      "rule": "buffer/strcpy",
+      "cwe": "CWE-120",
+      "severity": "high",
+      "title": "Potential buffer risk: strcpy",
+      "description": "Does not check for buffer overflows when copying to destination [MS-banned] (CWE-120).",
+      "code_snippet": "strcpy(buffer, user_input);"
+    },
+    {
+      "id": "FF-code.c-5-1-b72be8",
+      "file": "code.c",
+      "line": 5,
+      "column": 5,
+      "scanner": "flawfinder",
+      "rule": "buffer/char",
+      "cwe": "CWE-119",
+      "severity": "medium",
+      "title": "Potential buffer risk: char",
+      "description": "Statically-sized arrays can be improperly restricted, leading to potential overflows or other issues (CWE-119!/CWE-120).",
+      "code_snippet": "char buffer[16];"
+    },
+    {
+      "id": "FF-code.c-12-2-291008",
+      "file": "code.c",
+      "line": 12,
+      "column": 5,
+      "scanner": "flawfinder",
+      "rule": "buffer/char",
+      "cwe": "CWE-119",
+      "severity": "medium",
+      "title": "Potential buffer risk: char",
+      "description": "Statically-sized arrays can be improperly restricted, leading to potential overflows or other issues (CWE-119!/CWE-120).",
+      "code_snippet": "char input[64] = \"A_very_long_input_string_that_will_overflow\";"
+    }
+  ]
+}

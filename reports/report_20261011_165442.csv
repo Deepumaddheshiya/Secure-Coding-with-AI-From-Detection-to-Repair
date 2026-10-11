@@ -1,0 +1,4 @@
+ID,File,Line,Column,Scanner,Rule,CWE,Severity,Title,Description
+FF-Code_002.cpp-4-0-d1cd26,Code_002.cpp,4,20,flawfinder,integer/atoi,CWE-190,low,Potential integer risk: atoi,"Unless checked, the resulting number can exceed the expected range (CWE-190)."
+FF-Code_002.cpp-6-1-a42e11,Code_002.cpp,6,22,flawfinder,integer/atoi,CWE-190,low,Potential integer risk: atoi,"Unless checked, the resulting number can exceed the expected range (CWE-190)."
+FF-Code_002.cpp-8-2-370ef8,Code_002.cpp,8,22,flawfinder,integer/atoi,CWE-190,low,Potential integer risk: atoi,"Unless checked, the resulting number can exceed the expected range (CWE-190)."

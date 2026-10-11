@@ -1,0 +1,24 @@
+{
+  "project_name": "AI-SecureCode Audit (File_47)",
+  "language": "cpp",
+  "baseline_count": 1,
+  "remaining_count": 0,
+  "reduced_count": 0,
+  "reduction_rate": 0,
+  "compiler_status": "N/A",
+  "findings": [
+    {
+      "id": "FF-Code_001.cpp-36-0-927d18",
+      "file": "Code_001.cpp",
+      "line": 36,
+      "column": 5,
+      "scanner": "flawfinder",
+      "rule": "random/srand",
+      "cwe": "CWE-327",
+      "severity": "medium",
+      "title": "Potential random risk: srand",
+      "description": "This function is not sufficiently random for security-related functions such as key and nonce creation (CWE-327).",
+      "code_snippet": "srand(static_cast<unsigned int>(time(nullptr)));"
+    }
+  ]
+}
