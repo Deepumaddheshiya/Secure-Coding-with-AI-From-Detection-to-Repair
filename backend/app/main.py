@@ -4,10 +4,28 @@ Main entrypoint providing REST API for scanning, explaining, repairing, verifyin
 autonomous retry pipeline, and DevGPT benchmarking.
 """
 
+import sys
+import types
+from pathlib import Path
+
+# Fix import paths for both root execution and nested/Vercel deployment
+_current_file = Path(__file__).resolve()
+_backend_dir = _current_file.parent.parent  # directory containing 'app'
+_repo_dir = _backend_dir.parent             # root repo directory
+
+for _p in [str(_backend_dir), str(_repo_dir)]:
+    if _p not in sys.path:
+        sys.path.insert(0, _p)
+
+# Alias 'backend' module in sys.modules if not present (e.g. on Vercel where root is 'backend')
+if "backend" not in sys.modules:
+    _backend_pkg = types.ModuleType("backend")
+    _backend_pkg.__path__ = [str(_backend_dir)]
+    sys.modules["backend"] = _backend_pkg
+
 from fastapi import FastAPI, HTTPException, Body
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse
-from pathlib import Path
 from typing import Dict, Any, List, Optional
 
 from backend.app.config import OLLAMA_BASE_URL, REPORTS_DIR
@@ -30,7 +48,7 @@ from backend.app.benchmark.benchmark_service import benchmark_service
 from backend.app.reports.report_generator import report_generator
 
 app = FastAPI(
-    title="ARES Defender AI — Autonomous Vulnerability Detection & Program Repair Platform",
+    title="SECURE CODE with AI — Autonomous Vulnerability Detection & Program Repair Platform",
     description="Research-paper-based vulnerability detection, LLM program repair, and multi-scanner verification engine (Belozerov et al., 2026)",
     version="2.0.0"
 )
@@ -47,7 +65,7 @@ app.add_middleware(
 @app.get("/")
 def root():
     return {
-        "project": "ARES Defender AI",
+        "project": "SECURE CODE with AI",
         "description": "Autonomous Vulnerability Detection & Program Repair Platform (Belozerov et al., 2026)",
         "status": "online",
         "mode": "100% Offline Local Sandbox",
