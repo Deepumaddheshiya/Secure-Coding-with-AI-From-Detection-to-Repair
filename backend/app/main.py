@@ -62,7 +62,23 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.middleware("http")
+async def normalize_vercel_paths(request, call_next):
+    """Normalize paths if Vercel routes request with entrypoint filename prefix."""
+    path = request.scope.get("path", "")
+    for prefix in ["/app/main.py", "/app/main", "/api/index.py", "/index.py", "/main.py"]:
+        if path.startswith(prefix):
+            new_path = path[len(prefix):]
+            if not new_path.startswith("/"):
+                new_path = "/" + new_path
+            request.scope["path"] = new_path
+            break
+    return await call_next(request)
+
+
 @app.get("/")
+@app.get("/api")
+@app.get("/api/")
 def root():
     return {
         "project": "SECURE CODE with AI",
@@ -71,6 +87,7 @@ def root():
         "mode": "100% Offline Local Sandbox",
         "docs_url": "/docs"
     }
+
 
 @app.get("/api/health", response_model=SystemHealthResponse)
 @app.get("/health", response_model=SystemHealthResponse)
