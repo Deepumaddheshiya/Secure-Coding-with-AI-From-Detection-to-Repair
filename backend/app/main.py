@@ -53,10 +53,15 @@ app = FastAPI(
     version="2.0.0"
 )
 
-# Enable CORS for local React/Vite development
+# Enable CORS for local React/Vite development & Netlify production
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+        "*",
+        "https://harmonious-sprinkles-e6bc45.netlify.app",
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -66,14 +71,19 @@ app.add_middleware(
 async def normalize_vercel_paths(request, call_next):
     """Normalize paths if Vercel routes request with entrypoint filename prefix."""
     path = request.scope.get("path", "")
-    for prefix in ["/app/main.py", "/app/main", "/api/index.py", "/index.py", "/main.py"]:
-        if path.startswith(prefix):
-            new_path = path[len(prefix):]
-            if not new_path.startswith("/"):
-                new_path = "/" + new_path
-            request.scope["path"] = new_path
-            break
+    original_path = request.headers.get("x-matched-path") or request.headers.get("x-rewrite-url")
+    if original_path and not any(original_path.startswith(p) for p in ["/app/main.py", "/api/index.py"]):
+        request.scope["path"] = original_path
+    else:
+        for prefix in ["/app/main.py", "/app/main", "/api/index.py", "/index.py", "/main.py"]:
+            if path.startswith(prefix):
+                new_path = path[len(prefix):]
+                if not new_path.startswith("/"):
+                    new_path = "/" + new_path
+                request.scope["path"] = new_path
+                break
     return await call_next(request)
+
 
 
 @app.get("/")

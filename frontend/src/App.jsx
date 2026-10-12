@@ -109,6 +109,8 @@ export default function App() {
   const [selectedCase, setSelectedCase] = useState(null);
   const [caseDetail, setCaseDetail] = useState(null);
   const [reportFeedback, setReportFeedback] = useState(null);
+  const [isGeneratingReports, setIsGeneratingReports] = useState(false);
+  const [generatedReports, setGeneratedReports] = useState(null);
 
   // Research Paper & Ground Truth Data (Belozerov et al., 2026)
   const [paperData, setPaperData] = useState(null);
@@ -137,6 +139,7 @@ export default function App() {
     fetchAuditDecisions();
     // Auto-load File_01 on startup
     loadDevGptCase('File_01');
+    handleInspectCase('File_01');
   }, []);
 
   const fetchResearchPaperData = async () => {
@@ -487,7 +490,9 @@ export default function App() {
   };
 
   const handleGenerateReport = async () => {
+    setIsGeneratingReports(true);
     setReportFeedback("Generating audit reports...");
+    setGeneratedReports(null);
     try {
       const res = await fetch('/api/reports/generate', {
         method: 'POST',
@@ -505,10 +510,37 @@ export default function App() {
       });
       if (res.ok) {
         const data = await res.json();
-        setReportFeedback(`Reports ready! Created: ${data.json_report}, ${data.csv_report}, ${data.html_report}`);
+        setGeneratedReports(data);
+        setReportFeedback(`Reports generated successfully: ${data.json_report}, ${data.csv_report}, ${data.html_report}`);
+      } else {
+        const err = await res.json().catch(() => ({}));
+        setReportFeedback("Error generating report: " + (err.detail || res.statusText));
       }
     } catch (e) {
       setReportFeedback("Error generating report: " + e.message);
+    } finally {
+      setIsGeneratingReports(false);
+    }
+  };
+
+  const handleDownloadReport = async (filename) => {
+    if (!filename) return;
+    try {
+      const res = await fetch(`/api/reports/download/${filename}`);
+      if (!res.ok) {
+        throw new Error(`Failed to download report (${res.status} ${res.statusText})`);
+      }
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch (err) {
+      alert("Error downloading file: " + err.message);
     }
   };
 
@@ -2049,6 +2081,19 @@ export default function App() {
                   </div>
                 </div>
               )}
+
+              {/* If no case is selected yet */}
+              {!caseDetail && (
+                <div className="bg-[#111827] border border-[#1f2937] rounded-xl p-12 text-center space-y-3">
+                  <div className="w-12 h-12 rounded-xl bg-sky-950/60 border border-sky-800 text-sky-400 flex items-center justify-center mx-auto">
+                    <FileCode className="w-6 h-6" />
+                  </div>
+                  <h4 className="font-bold text-base text-white">Select a Test Case Above</h4>
+                  <p className="text-xs text-gray-400 max-w-md mx-auto">
+                    Click on any case from <code className="text-sky-300 font-mono">File_01</code> to <code className="text-sky-300 font-mono">File_48</code> to inspect the original source code, scanner findings, and historical benchmark repairs.
+                  </p>
+                </div>
+              )}
             </div>
           )}
 
@@ -2069,14 +2114,51 @@ export default function App() {
 
                 <button
                   onClick={handleGenerateReport}
-                  className="px-6 py-2.5 rounded-lg bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold transition shadow-lg shadow-sky-950"
+                  disabled={isGeneratingReports}
+                  className="px-6 py-2.5 rounded-lg bg-sky-600 hover:bg-sky-500 disabled:opacity-50 disabled:cursor-not-allowed text-white text-xs font-bold transition shadow-lg shadow-sky-950 inline-flex items-center gap-2"
                 >
-                  Generate Audit Reports Now
+                  {isGeneratingReports && <RefreshCw className="w-3.5 h-3.5 animate-spin" />}
+                  <span>{isGeneratingReports ? "Generating Reports..." : "Generate Audit Reports Now"}</span>
                 </button>
 
                 {reportFeedback && (
-                  <div className="p-3 bg-[#0e1422] border border-[#1f2937] rounded-lg text-xs text-emerald-400 font-mono mt-4">
+                  <div className={`p-3 bg-[#0e1422] border rounded-lg text-xs font-mono mt-4 ${
+                    reportFeedback.toLowerCase().includes("error")
+                      ? "border-red-900/50 text-red-400"
+                      : "border-[#1f2937] text-emerald-400"
+                  }`}>
                     {reportFeedback}
+                  </div>
+                )}
+
+                {generatedReports && (
+                  <div className="pt-2 space-y-3">
+                    <p className="text-xs font-semibold text-gray-300">
+                      Download Your Audit Files:
+                    </p>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                      <button
+                        onClick={() => handleDownloadReport(generatedReports.json_report)}
+                        className="flex items-center justify-center space-x-2 px-4 py-2.5 rounded-lg bg-[#141d2e] hover:bg-[#1e2b42] text-white text-xs font-bold border border-[#23334d] hover:border-sky-500/50 transition shadow-sm"
+                      >
+                        <FileCode className="w-4 h-4 text-sky-400" />
+                        <span>Download JSON</span>
+                      </button>
+                      <button
+                        onClick={() => handleDownloadReport(generatedReports.csv_report)}
+                        className="flex items-center justify-center space-x-2 px-4 py-2.5 rounded-lg bg-[#141d2e] hover:bg-[#1e2b42] text-white text-xs font-bold border border-[#23334d] hover:border-emerald-500/50 transition shadow-sm"
+                      >
+                        <Layers className="w-4 h-4 text-emerald-400" />
+                        <span>Download CSV</span>
+                      </button>
+                      <button
+                        onClick={() => handleDownloadReport(generatedReports.html_report)}
+                        className="flex items-center justify-center space-x-2 px-4 py-2.5 rounded-lg bg-[#141d2e] hover:bg-[#1e2b42] text-white text-xs font-bold border border-[#23334d] hover:border-indigo-500/50 transition shadow-sm"
+                      >
+                        <ExternalLink className="w-4 h-4 text-indigo-400" />
+                        <span>Download HTML</span>
+                      </button>
+                    </div>
                   </div>
                 )}
               </div>

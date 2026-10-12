@@ -10,3 +10,4 @@ frontend/dist/
 backend/app/db/*.db
 .env
 .DS_Store
+reports/report_*

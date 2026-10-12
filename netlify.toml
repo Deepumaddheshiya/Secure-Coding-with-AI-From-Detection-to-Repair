@@ -5,3 +5,16 @@
 
 [build.environment]
   GIT_SUBMODULES = "false"
+
+# Reverse proxy all /api requests directly to Vercel FastAPI backend
+[[redirects]]
+  from = "/api/*"
+  to = "https://secure-coding-with-ai-from-detectio-nu.vercel.app/api/:splat"
+  status = 200
+  force = true
+
+# SPA client-side routing fallback
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

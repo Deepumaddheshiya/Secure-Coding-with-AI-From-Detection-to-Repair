@@ -1,0 +1,2 @@
+/api/*  https://secure-coding-with-ai-from-detectio-nu.vercel.app/api/:splat  200!
+/*  /index.html  200
