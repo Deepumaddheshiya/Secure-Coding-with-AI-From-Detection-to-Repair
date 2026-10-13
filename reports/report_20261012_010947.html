@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ARES Defender AI Audit Report - report_20261012_010947</title>
+    <style>
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; margin: 40px; color: #1e293b; background: #fff; }
+        .header { border-bottom: 3px solid #2563eb; padding-bottom: 20px; margin-bottom: 30px; }
+        h1 { color: #1e3a8a; margin: 0 0 10px 0; font-size: 26px; }
+        .meta { color: #64748b; font-size: 14px; margin-bottom: 20px; }
+        .badge { padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; color: white; display: inline-block; }
+        .badge-danger { background: #dc2626; }
+        .badge-success { background: #16a34a; }
+        .badge-warning { background: #d97706; }
+        .badge-info { background: #2563eb; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 13px; }
+        th, td { border: 1px solid #cbd5e1; padding: 10px; text-align: left; }
+        th { background: #f1f5f9; color: #334155; }
+        pre { background: #f8fafc; border: 1px solid #e2e8f0; padding: 12px; border-radius: 6px; font-size: 12px; overflow-x: auto; }
+        .card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; margin-bottom: 20px; }
+        @media print { body { margin: 15mm; } .no-print { display: none; } }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>ARES Defender AI — Vulnerability Audit & Program Repair Report</h1>
+        <div class="meta">
+            <strong>Project:</strong> ARES Defender Security Audit (File_04) | 
+            <strong>Date:</strong> 2026-10-12 01:09:47 | 
+            <strong>Environment:</strong> 100% Offline Local Sandbox
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>Verification & Reduction Summary</h3>
+        <p><strong>Baseline Findings:</strong> 4</p>
+        <p><strong>Remaining Findings:</strong> 0</p>
+        <p><strong>Findings Reduced:</strong> 0</p>
+        <p><strong>Reduction Rate:</strong> 0%</p>
+        <p><strong>Compiler Verification:</strong> <span class="badge badge-success">N/A</span></p>
+    </div>
+
+    <h3>Detected Findings</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Scanner</th>
+                <th>Line</th>
+                <th>Severity</th>
+                <th>CWE</th>
+                <th>Title & Description</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <td><strong>cppcheck</strong></td>
+                <td>118</td>
+                <td><span class="badge badge-warning">MEDIUM</span></td>
+                <td><code>CWE-General</code></td>
+                <td><strong>DevGPT Finding: shadowVariable</strong><br><small>Local variable 'word' shadows outer variable </small></td>
+            </tr>
+
+            <tr>
+                <td><strong>flawfinder</strong></td>
+                <td>78</td>
+                <td><span class="badge badge-info">LOW</span></td>
+                <td><code>CWE-362</code></td>
+                <td><strong>DevGPT Finding: FF1040</strong><br><small>misc/open:Check when opening files - can an attacker redirect it (via symlinks), force the opening of special file type (e.g., device files), move things around to create a race condition, control its ancestors, or change its contents? (CWE-362).</small></td>
+            </tr>
+
+            <tr>
+                <td><strong>semgrep</strong></td>
+                <td>78</td>
+                <td><span class="badge badge-warning">MEDIUM</span></td>
+                <td><code>CWE-General</code></td>
+                <td><strong>DevGPT Finding: cpp.lang.security.filesystem.path-manipulation.path-manipulation</strong><br><small>The application builds a file path from potentially untrusted data, which can lead to a path traversal vulnerability. An attacker can manipulate the path which the application uses to access files. If the application does not validate user input and sanitize file paths, sensitive files such as configuration or user data can be accessed, potentially creating or overwriting files. To prevent this vulnerability, validate and sanitize any input that is used to create references to file paths. Also, enforce strict file access controls. For example, choose privileges allowing public-facing applications to access only the required files.</small></td>
+            </tr>
+
+            <tr>
+                <td><strong>snyk</strong></td>
+                <td>78</td>
+                <td><span class="badge badge-warning">MEDIUM</span></td>
+                <td><code>CWE-General</code></td>
+                <td><strong>DevGPT Finding: cpp/PT</strong><br><small>Unsanitized input from a command line argument flows into open, where it is used as a path. This may result in a Path Traversal vulnerability and allow an attacker to read arbitrary files.</small></td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <div style="margin-top: 30px;" class="no-print">
+        <button onclick="window.print()" style="padding: 10px 20px; background: #2563eb; color: #fff; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: bold;">
+            Print / Save as PDF
+        </button>
+    </div>
+</body>
+</html>

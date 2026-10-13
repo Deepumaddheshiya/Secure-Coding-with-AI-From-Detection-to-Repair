@@ -102,7 +102,9 @@ class AIRepairResponse(BaseModel):
     is_repaired: bool = True
 
 class CompilerVerificationResult(BaseModel):
-    compiled: bool
+    language: str = ""
+    compiler: str = "unknown"
+    compiled: Optional[bool] = None
     status: str
     exit_code: int
     output: str
@@ -123,18 +125,23 @@ class VerifyResponse(BaseModel):
     findings_reduced: int
     reduction_rate: float
     targeted_finding_resolved: bool
+    is_verified: bool = False
     remaining_findings: List[NormalizedFinding] = []
     verification_summary: str = ""
 
 class RepairAttemptInfo(BaseModel):
     """Records each attempt in the AI Retry Loop (Attempts 1 to 3)."""
     attempt: int
-    model: str
+    status: str = ""
+    model: Optional[str] = None
     ai_output: Optional[StructuredAIOutput] = None
     repaired_code: str = ""
     compiler: str
     compiler_exit_code: int
     compiler_output: str
+    baseline_findings_count: int = 0
+    remaining_findings_count: int = 0
+    findings_reduced: int = 0
     reduction_rate: float
     targeted_finding_resolved: bool
     remaining_findings: List[NormalizedFinding] = []

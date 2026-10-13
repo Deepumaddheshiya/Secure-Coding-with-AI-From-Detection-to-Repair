@@ -1,0 +1,14 @@
+ID,File,Line,Column,Scanner,Rule,CWE,Severity,Title,Description
+FF-Code_001.c-81-0-0590bf,Code_001.c,81,5,flawfinder,buffer/strcpy,CWE-120,high,Potential buffer risk: strcpy,Does not check for buffer overflows when copying to destination [MS-banned] (CWE-120).
+FF-Code_001.c-82-1-76e621,Code_001.c,82,5,flawfinder,buffer/strcpy,CWE-120,high,Potential buffer risk: strcpy,Does not check for buffer overflows when copying to destination [MS-banned] (CWE-120).
+FF-Code_001.c-83-2-1d8db5,Code_001.c,83,5,flawfinder,buffer/strcpy,CWE-120,high,Potential buffer risk: strcpy,Does not check for buffer overflows when copying to destination [MS-banned] (CWE-120).
+FF-Code_001.c-114-3-52c039,Code_001.c,114,5,flawfinder,buffer/strcpy,CWE-120,high,Potential buffer risk: strcpy,Does not check for buffer overflows when copying to destination [MS-banned] (CWE-120).
+FF-Code_001.c-115-4-461be7,Code_001.c,115,5,flawfinder,buffer/strcpy,CWE-120,high,Potential buffer risk: strcpy,Does not check for buffer overflows when copying to destination [MS-banned] (CWE-120).
+FF-Code_001.c-116-5-d0517a,Code_001.c,116,5,flawfinder,buffer/strcpy,CWE-120,high,Potential buffer risk: strcpy,Does not check for buffer overflows when copying to destination [MS-banned] (CWE-120).
+FF-Code_001.c-7-6-24cfe8,Code_001.c,7,5,flawfinder,buffer/char,CWE-119,low,Potential buffer risk: char,"Statically-sized arrays can be improperly restricted, leading to potential overflows or other issues (CWE-119!/CWE-120)."
+FF-Code_001.c-8-7-85da1b,Code_001.c,8,5,flawfinder,buffer/char,CWE-119,low,Potential buffer risk: char,"Statically-sized arrays can be improperly restricted, leading to potential overflows or other issues (CWE-119!/CWE-120)."
+FF-Code_001.c-9-8-e18345,Code_001.c,9,5,flawfinder,buffer/char,CWE-119,low,Potential buffer risk: char,"Statically-sized arrays can be improperly restricted, leading to potential overflows or other issues (CWE-119!/CWE-120)."
+FF-Code_001.c-11-9-044456,Code_001.c,11,5,flawfinder,buffer/char,CWE-119,low,Potential buffer risk: char,"Statically-sized arrays can be improperly restricted, leading to potential overflows or other issues (CWE-119!/CWE-120)."
+FF-Code_001.c-64-10-06386c,Code_001.c,64,5,flawfinder,buffer/strcpy,CWE-120,low,Potential buffer risk: strcpy,Does not check for buffer overflows when copying to destination [MS-banned] (CWE-120).
+FF-Code_001.c-65-11-023e18,Code_001.c,65,5,flawfinder,buffer/strcpy,CWE-120,low,Potential buffer risk: strcpy,Does not check for buffer overflows when copying to destination [MS-banned] (CWE-120).
+FF-Code_001.c-66-12-bdebe1,Code_001.c,66,5,flawfinder,buffer/strcpy,CWE-120,low,Potential buffer risk: strcpy,Does not check for buffer overflows when copying to destination [MS-banned] (CWE-120).

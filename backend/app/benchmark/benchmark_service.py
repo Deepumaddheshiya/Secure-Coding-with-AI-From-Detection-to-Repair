@@ -45,6 +45,9 @@ class BenchmarkService:
         if not BENCHMARK_DIR.exists():
             return []
 
+        import sys
+        if str(BASE_DIR) not in sys.path:
+            sys.path.insert(0, str(BASE_DIR))
         from evaluator import parse_case_info, get_case_files
 
         cases_list = []
@@ -88,6 +91,9 @@ class BenchmarkService:
         if not case_dir.exists():
             return None
 
+        import sys
+        if str(BASE_DIR) not in sys.path:
+            sys.path.insert(0, str(BASE_DIR))
         from evaluator import parse_case_info, get_case_files, run_flawfinder_on_code
         info = parse_case_info(case_dir)
         files = get_case_files(case_dir, info.get("target_file", ""))
@@ -215,6 +221,9 @@ class BenchmarkService:
             }
 
         cases = sorted([d for d in os.listdir(BENCHMARK_DIR) if (BENCHMARK_DIR / d).is_dir() and d.startswith("File_")])[:limit_cases]
+        import sys
+        if str(BASE_DIR) not in sys.path:
+            sys.path.insert(0, str(BASE_DIR))
         from evaluator import parse_case_info, get_case_files, run_flawfinder_on_code
         from backend.app.ollama.repairer import ai_repairer
 

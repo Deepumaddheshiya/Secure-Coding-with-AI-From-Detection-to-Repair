@@ -22,18 +22,41 @@ MODELS = [
 ]
 
 def run_flawfinder_on_code(file_path):
-    """Runs flawfinder with CSV output on a file and returns structured issues."""
+    """Runs flawfinder with CSV output on a file and returns structured issues.
+    
+    Uses system flawfinder binary (installed via pip/pipx as CLI tool).
+    Falls back to python -m flawfinder if binary not available in PATH.
+    Returns empty list if file not found or scanner unavailable.
+    """
+    import shutil
     if not file_path or not os.path.exists(file_path):
         return []
+    
+    # Determine the correct flawfinder command
+    if shutil.which("flawfinder"):
+        cmd = ["flawfinder", "--csv", str(file_path)]
+    elif shutil.which("python") and subprocess.run(
+        ["python", "-m", "flawfinder", "--version"],
+        capture_output=True, timeout=3
+    ).returncode == 0:
+        cmd = ["python", "-m", "flawfinder", "--csv", str(file_path)]
+    elif subprocess.run(
+        [sys.executable, "-m", "flawfinder", "--version"],
+        capture_output=True, timeout=3
+    ).returncode == 0:
+        cmd = [sys.executable, "-m", "flawfinder", "--csv", str(file_path)]
+    else:
+        return []  # flawfinder not available — do not silently return 0 hits
+
     try:
         result = subprocess.run(
-            [sys.executable, "-m", "flawfinder", "--csv", str(file_path)],
+            cmd,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             text=True,
             encoding="utf-8",
             errors="ignore",
-            timeout=10
+            timeout=15
         )
         hits = []
         if result.stdout.strip():

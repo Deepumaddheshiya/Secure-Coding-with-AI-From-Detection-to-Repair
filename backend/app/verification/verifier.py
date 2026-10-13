@@ -46,15 +46,15 @@ class RepairVerifier:
         if not available_scanners:
             status = "VERIFICATION_UNAVAILABLE"
             return VerifyResponse(
-                language=req.language,
+                status=status,
                 compiler_verification=compile_res,
                 baseline_findings_count=len(req.baseline_findings),
                 remaining_findings_count=len(req.baseline_findings),
                 findings_reduced=0,
                 reduction_rate=0.0,
+                targeted_finding_resolved=False,
+                is_verified=False,
                 remaining_findings=req.baseline_findings,
-                is_verified_fixed=False,
-                status=status,
                 verification_summary="Verification scanner is unavailable on this system. Cannot re-scan."
             )
 
@@ -118,15 +118,15 @@ class RepairVerifier:
                 summary = f"FAILED_SECURITY_RESCAN: Code compiled cleanly, but security finding remains detected ({remaining_count} flaw(s) active)."
 
         return VerifyResponse(
-            language=req.language,
+            status=status,
             compiler_verification=compile_res,
             baseline_findings_count=baseline_count,
             remaining_findings_count=remaining_count,
             findings_reduced=findings_reduced,
             reduction_rate=reduction_rate,
+            targeted_finding_resolved=target_resolved,
+            is_verified=is_verified,
             remaining_findings=remaining_findings,
-            is_verified_fixed=is_verified,
-            status=status,
             verification_summary=summary
         )
 

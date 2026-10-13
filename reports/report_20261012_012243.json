@@ -1,0 +1,50 @@
+{
+  "project_name": "ARES Defender Security Audit (custom)",
+  "language": "c",
+  "baseline_count": 3,
+  "remaining_count": 0,
+  "reduced_count": 0,
+  "reduction_rate": 0,
+  "compiler_status": "N/A",
+  "findings": [
+    {
+      "id": "FF-source.c-7-0-4d9499",
+      "file": "source.c",
+      "line": 7,
+      "column": 5,
+      "scanner": "flawfinder",
+      "rule": "buffer/strcpy",
+      "cwe": "CWE-120",
+      "severity": "high",
+      "title": "Potential buffer risk: strcpy",
+      "description": "Does not check for buffer overflows when copying to destination [MS-banned] (CWE-120).",
+      "code_snippet": "strcpy(buffer, user_input);"
+    },
+    {
+      "id": "FF-source.c-5-1-6a8d8d",
+      "file": "source.c",
+      "line": 5,
+      "column": 5,
+      "scanner": "flawfinder",
+      "rule": "buffer/char",
+      "cwe": "CWE-119",
+      "severity": "low",
+      "title": "Potential buffer risk: char",
+      "description": "Statically-sized arrays can be improperly restricted, leading to potential overflows or other issues (CWE-119!/CWE-120).",
+      "code_snippet": "char buffer[16];"
+    },
+    {
+      "id": "FF-source.c-12-2-03ae98",
+      "file": "source.c",
+      "line": 12,
+      "column": 5,
+      "scanner": "flawfinder",
+      "rule": "buffer/char",
+      "cwe": "CWE-119",
+      "severity": "low",
+      "title": "Potential buffer risk: char",
+      "description": "Statically-sized arrays can be improperly restricted, leading to potential overflows or other issues (CWE-119!/CWE-120).",
+      "code_snippet": "char input[64] = \"A_very_long_input_string_that_will_overflow\";"
+    }
+  ]
+}

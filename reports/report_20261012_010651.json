@@ -1,0 +1,10 @@
+{
+  "project_name": "ARES Defender Security Audit (File_01)",
+  "language": "c",
+  "baseline_count": 0,
+  "remaining_count": 0,
+  "reduced_count": 0,
+  "reduction_rate": 0,
+  "compiler_status": "N/A",
+  "findings": []
+}

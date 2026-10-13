@@ -117,6 +117,13 @@ export default function App() {
   const [liveMetrics, setLiveMetrics] = useState(null);
   const [selectedRq, setSelectedRq] = useState('rq1');
 
+  // Dynamic Dashboard (real backend data — no hardcoded numbers)
+  const [dashboardSummary, setDashboardSummary] = useState(null);
+  const [dashboardCharts, setDashboardCharts] = useState(null);
+  const [dashboardLoading, setDashboardLoading] = useState(false);
+  const [isRegenerating, setIsRegenerating] = useState(false);
+  const [regenResult, setRegenResult] = useState(null);
+
   // Manual Auditor Workbench State (Section 5 Requirement)
   const [auditDecisions, setAuditDecisions] = useState([]);
   const [auditSummary, setAuditSummary] = useState(null);
@@ -137,10 +144,60 @@ export default function App() {
     fetchResearchPaperData();
     fetchLiveMetrics();
     fetchAuditDecisions();
+    fetchDashboardSummary();
+    fetchDashboardCharts();
     // Auto-load File_01 on startup
     loadDevGptCase('File_01');
     handleInspectCase('File_01');
   }, []);
+
+  const fetchDashboardSummary = async () => {
+    try {
+      const res = await fetch('/api/dashboard/summary');
+      if (res.ok) {
+        const data = await res.json();
+        setDashboardSummary(data);
+      }
+    } catch (e) {
+      console.warn("Could not load dashboard summary:", e);
+    }
+  };
+
+  const fetchDashboardCharts = async () => {
+    try {
+      const res = await fetch('/api/dashboard/charts');
+      if (res.ok) {
+        const data = await res.json();
+        setDashboardCharts(data);
+      }
+    } catch (e) {
+      console.warn("Could not load dashboard charts:", e);
+    }
+  };
+
+  const handleRegenerateReport = async () => {
+    setIsRegenerating(true);
+    setRegenResult(null);
+    try {
+      const res = await fetch('/api/benchmark/regenerate', { method: 'POST' });
+      if (res.ok) {
+        const data = await res.json();
+        setRegenResult(data);
+        // Refresh dashboard after regeneration
+        await fetchDashboardSummary();
+        await fetchDashboardCharts();
+        await fetchHistoricalBenchmark();
+      } else {
+        const err = await res.json().catch(() => ({}));
+        setRegenResult({ status: 'error', message: err.detail || res.statusText });
+      }
+    } catch (e) {
+      setRegenResult({ status: 'error', message: e.message });
+    } finally {
+      setIsRegenerating(false);
+    }
+  };
+
 
   const fetchResearchPaperData = async () => {
     try {
@@ -1170,48 +1227,125 @@ export default function App() {
           {/* ======================================================== */}
           {activeTab === 'dashboard' && (
             <div className="space-y-6">
-              {/* Stat Cards */}
+              {/* Regenerate / Refresh Controls */}
+              <div className="bg-[#111827] border border-[#1f2937] rounded-xl p-4 flex flex-wrap items-center justify-between gap-3 text-xs">
+                <div className="space-y-0.5">
+                  <div className="font-bold text-white text-sm">Live Evaluation Dashboard</div>
+                  <div className="text-gray-400">
+                    All metrics computed from <code className="text-sky-300">evaluation_report.json</code> and audit DB — no hardcoded values.
+                    {dashboardSummary?.live_flawfinder_ran === false && (
+                      <span className="ml-2 text-amber-400 font-semibold">⚠ Live flawfinder scan not yet run.</span>
+                    )}
+                  </div>
+                </div>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => { fetchDashboardSummary(); fetchDashboardCharts(); }}
+                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#162032] hover:bg-[#1e2b42] text-gray-300 border border-[#23334d] transition"
+                  >
+                    <RefreshCw className="w-3.5 h-3.5 text-sky-400" />
+                    <span>Refresh</span>
+                  </button>
+                  <button
+                    onClick={handleRegenerateReport}
+                    disabled={isRegenerating}
+                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-700/60 hover:bg-amber-700 disabled:opacity-50 text-amber-200 border border-amber-700/50 transition font-semibold"
+                  >
+                    {isRegenerating ? <RefreshCw className="w-3.5 h-3.5 animate-spin" /> : <Play className="w-3.5 h-3.5 fill-current" />}
+                    <span>{isRegenerating ? 'Running Evaluator...' : 'Re-Run Evaluation (Fix Flawfinder)'}</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* Regen Result */}
+              {regenResult && (
+                <div className={`p-3 rounded-lg border text-xs font-mono ${regenResult.status === 'completed' ? 'bg-emerald-950/40 border-emerald-700 text-emerald-300' : 'bg-rose-950/40 border-rose-700 text-rose-300'}`}>
+                  <div className="font-bold mb-1">Evaluation Result: {regenResult.status?.toUpperCase()}</div>
+                  {regenResult.report_summary && (
+                    <div className="text-gray-300 space-y-0.5">
+                      <div>Total Cases: <strong>{regenResult.report_summary.total_cases}</strong></div>
+                      <div>Total Recorded Findings: <strong>{regenResult.report_summary.total_orig_findings}</strong></div>
+                      <div>Live Flawfinder Hits (Original): <strong className="text-rose-300">{regenResult.report_summary.total_orig_flawfinder_hits}</strong></div>
+                    </div>
+                  )}
+                  {regenResult.note && <div className="mt-1 text-gray-400">{regenResult.note}</div>}
+                  {regenResult.message && <div className="mt-1">{regenResult.message}</div>}
+                </div>
+              )}
+
+              {/* Summary Stat Cards — ALL DYNAMIC */}
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                 <div className="bg-[#111827] border border-[#1f2937] p-5 rounded-xl space-y-1">
                   <div className="flex items-center justify-between text-gray-400 text-xs font-semibold uppercase">
                     <span>DevGPT Benchmark</span>
                     <FileCode className="w-4 h-4 text-sky-400" />
                   </div>
-                  <div className="text-2xl font-black text-white">48 Cases</div>
-                  <p className="text-[11px] text-gray-500">C, C++, and C# real samples</p>
+                  <div className="text-2xl font-black text-white">
+                    {dashboardSummary?.total_dataset_cases ?? benchmarkCases.length ?? '—'} Cases
+                  </div>
+                  <p className="text-[11px] text-gray-500">
+                    {dashboardSummary?.cases_with_source_code != null
+                      ? `${dashboardSummary.cases_with_source_code} with source code`
+                      : 'C, C++, and C# real samples'}
+                  </p>
                 </div>
 
                 <div className="bg-[#111827] border border-[#1f2937] p-5 rounded-xl space-y-1">
                   <div className="flex items-center justify-between text-gray-400 text-xs font-semibold uppercase">
-                    <span>Baseline Live Flaws</span>
+                    <span>Baseline Flawfinder Hits</span>
                     <AlertTriangle className="w-4 h-4 text-rose-400" />
                   </div>
-                  <div className="text-2xl font-black text-rose-400">74 Flaws</div>
-                  <p className="text-[11px] text-gray-500">Detected across benchmark</p>
+                  <div className="text-2xl font-black text-rose-400">
+                    {dashboardSummary?.baseline_flawfinder_hits != null
+                      ? (dashboardSummary.baseline_flawfinder_hits > 0
+                          ? `${dashboardSummary.baseline_flawfinder_hits} Hits`
+                          : 'Not Scanned')
+                      : '—'}
+                  </div>
+                  <p className="text-[11px] text-gray-500">
+                    {dashboardSummary?.live_flawfinder_ran
+                      ? `Recorded findings: ${dashboardSummary.dataset_recorded_findings}`
+                      : 'Click Re-Run Evaluation to scan'}
+                  </p>
                 </div>
 
                 <div className="bg-[#111827] border border-[#1f2937] p-5 rounded-xl space-y-1">
                   <div className="flex items-center justify-between text-gray-400 text-xs font-semibold uppercase">
-                    <span>Local Static Scanners</span>
+                    <span>Active Scanners</span>
                     <Terminal className="w-4 h-4 text-emerald-400" />
                   </div>
                   <div className="text-2xl font-black text-emerald-400">
-                    {systemHealth?.scanners?.filter(s => s.installed).length || 1} Active
+                    {systemHealth?.scanners?.filter(s => s.installed).length ?? '—'} Active
                   </div>
-                  <p className="text-[11px] text-gray-500">Flawfinder, Cppcheck, Semgrep</p>
+                  <p className="text-[11px] text-gray-500">
+                    {systemHealth?.scanners?.filter(s => s.installed).map(s => s.name).join(', ') || 'No scanners detected'}
+                  </p>
                 </div>
 
                 <div className="bg-[#111827] border border-[#1f2937] p-5 rounded-xl space-y-1">
                   <div className="flex items-center justify-between text-gray-400 text-xs font-semibold uppercase">
-                    <span>Local AI Model</span>
+                    <span>Best Reduction Rate</span>
                     <Cpu className="w-4 h-4 text-indigo-400" />
                   </div>
                   <div className="text-xl font-bold text-indigo-300 truncate">
-                    {selectedModel || 'qwen2.5-coder'}
+                    {dashboardSummary?.best_flawfinder_reduction ?? 'N/A'}
                   </div>
-                  <p className="text-[11px] text-gray-500">Offline Ollama runtime</p>
+                  <p className="text-[11px] text-gray-500">
+                    {dashboardSummary?.live_flawfinder_ran ? 'Live flawfinder comparison' : 'Run evaluation first'}
+                  </p>
                 </div>
               </div>
+
+              {/* Empty state if no evaluation data */}
+              {!dashboardSummary?.evaluation_ran && (
+                <div className="bg-[#0e1422] border border-dashed border-[#23334d] rounded-xl p-10 flex flex-col items-center text-center gap-3">
+                  <Layers className="w-10 h-10 text-gray-600" />
+                  <div className="text-gray-400 font-semibold text-sm">No Evaluation Data</div>
+                  <p className="text-xs text-gray-500 max-w-md">
+                    No evaluation_report.json found or it has no cases. Click <strong>Re-Run Evaluation</strong> above to generate real baseline metrics.
+                  </p>
+                </div>
+              )}
 
               {/* Quick Launch Banner */}
               <div className="bg-gradient-to-r from-sky-950/70 via-[#131b2e] to-indigo-950/70 border border-sky-800/40 rounded-xl p-6 flex items-center justify-between">
@@ -1231,15 +1365,29 @@ export default function App() {
                 </button>
               </div>
 
-              {/* Historical Model Leaderboard */}
+              {/* Historical Model Leaderboard — DYNAMIC from dashboardCharts */}
               <div className="bg-[#111827] border border-[#1f2937] rounded-xl p-5 space-y-3">
                 <div className="flex items-center justify-between">
                   <h3 className="font-bold text-sm text-white flex items-center gap-2">
                     <Flame className="w-4 h-4 text-amber-400" />
-                    <span>DevGPT Benchmark Leaderboard (48 Test Cases)</span>
+                    <span>DevGPT Benchmark Leaderboard (Historical LLM Models)</span>
                   </h3>
-                  <span className="text-xs text-gray-400 font-mono">Baseline: 74 Live Flaws</span>
+                  <span className="text-xs text-gray-400 font-mono">
+                    Baseline: {dashboardSummary?.baseline_flawfinder_hits > 0
+                      ? `${dashboardSummary.baseline_flawfinder_hits} Live Flawfinder Hits`
+                      : dashboardSummary?.dataset_recorded_findings > 0
+                        ? `${dashboardSummary.dataset_recorded_findings} Recorded Findings (live scan pending)`
+                        : 'No baseline yet'}
+                  </span>
                 </div>
+
+                {/* Show note about data source */}
+                {dashboardSummary?.baseline_flawfinder_hits === 0 && (
+                  <div className="bg-amber-950/30 border border-amber-800/40 rounded-lg p-3 text-xs text-amber-300">
+                    ⚠ Live flawfinder baseline is 0. This means the evaluator was previously run with a broken flawfinder command.
+                    Click <strong>Re-Run Evaluation</strong> to get real results. Reduction rates below show N/A until baseline is populated.
+                  </div>
+                )}
 
                 <div className="overflow-x-auto">
                   <table className="w-full text-left text-xs text-gray-300">
@@ -1251,43 +1399,123 @@ export default function App() {
                         <th className="px-4 py-3">Remaining Flaws</th>
                         <th className="px-4 py-3">Flaws Eliminated</th>
                         <th className="px-4 py-3">Reduction Rate</th>
-                        <th className="px-4 py-3">Cases Improved</th>
+                        <th className="px-4 py-3">Compiled OK</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-[#1b2536]">
-                      <tr className="hover:bg-[#141d2e] transition">
-                        <td className="px-4 py-3 font-bold text-amber-400">🥇 1</td>
-                        <td className="px-4 py-3 font-mono font-bold text-white">gpt-5-2025-08-07</td>
-                        <td className="px-4 py-3">74</td>
-                        <td className="px-4 py-3 font-bold text-emerald-400">57</td>
-                        <td className="px-4 py-3 font-bold text-emerald-400">+17</td>
-                        <td className="px-4 py-3 font-black text-emerald-400">23.0%</td>
-                        <td className="px-4 py-3">14 / 48</td>
-                      </tr>
-                      <tr className="hover:bg-[#141d2e] transition">
-                        <td className="px-4 py-3 font-bold text-slate-300">🥈 2</td>
-                        <td className="px-4 py-3 font-mono font-bold text-white">gpt-4.1-2025-04-14</td>
-                        <td className="px-4 py-3">74</td>
-                        <td className="px-4 py-3 font-bold text-sky-400">69</td>
-                        <td className="px-4 py-3 font-bold text-sky-400">+5</td>
-                        <td className="px-4 py-3 font-bold text-sky-400">6.8%</td>
-                        <td className="px-4 py-3">13 / 48</td>
-                      </tr>
-                      <tr className="hover:bg-[#141d2e] transition">
-                        <td className="px-4 py-3 font-bold text-amber-600">🥉 3</td>
-                        <td className="px-4 py-3 font-mono font-bold text-white">claude-opus-4-1-20250805</td>
-                        <td className="px-4 py-3">74</td>
-                        <td className="px-4 py-3 font-bold text-amber-400">72</td>
-                        <td className="px-4 py-3 font-bold text-amber-400">+2</td>
-                        <td className="px-4 py-3 font-bold text-amber-400">2.7%</td>
-                        <td className="px-4 py-3">12 / 48</td>
-                      </tr>
+                      {dashboardCharts?.model_comparison_chart?.length > 0
+                        ? dashboardCharts.model_comparison_chart
+                            .sort((a, b) => (b.fixed_cases || 0) - (a.fixed_cases || 0))
+                            .map((m, idx) => (
+                              <tr key={m.model} className="hover:bg-[#141d2e] transition">
+                                <td className="px-4 py-3 font-bold text-amber-400">
+                                  {idx === 0 ? '🥇' : idx === 1 ? '🥈' : '🥉'} {idx + 1}
+                                </td>
+                                <td className="px-4 py-3 font-mono font-bold text-white">{m.model}</td>
+                                <td className="px-4 py-3">{m.baseline > 0 ? m.baseline : 'N/A'}</td>
+                                <td className="px-4 py-3 font-bold text-emerald-400">
+                                  {m.baseline > 0 ? m.remaining : 'N/A'}
+                                </td>
+                                <td className="px-4 py-3 font-bold text-sky-400">
+                                  {m.baseline > 0 ? `+${m.reduced}` : 'N/A'}
+                                </td>
+                                <td className="px-4 py-3 font-bold text-sky-400">
+                                  {m.reduction_rate != null ? `${m.reduction_rate}%` : 'N/A'}
+                                </td>
+                                <td className="px-4 py-3">
+                                  {m.compile_ok} / {dashboardSummary?.total_dataset_cases ?? 48}
+                                </td>
+                              </tr>
+                            ))
+                        : (
+                          <tr>
+                            <td colSpan={7} className="px-4 py-6 text-center text-gray-500">
+                              No evaluation data available. Run Re-Run Evaluation to generate results.
+                            </td>
+                          </tr>
+                        )
+                      }
                     </tbody>
                   </table>
                 </div>
               </div>
+
+              {/* Scanner Usage Chart */}
+              {dashboardCharts?.scanner_chart?.length > 0 && (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="bg-[#111827] border border-[#1f2937] rounded-xl p-5 space-y-3">
+                    <h3 className="font-bold text-sm text-white flex items-center gap-2">
+                      <Terminal className="w-4 h-4 text-sky-400" />
+                      <span>Scanner Usage Across Dataset</span>
+                    </h3>
+                    <div className="space-y-2">
+                      {dashboardCharts.scanner_chart.map(s => (
+                        <div key={s.scanner} className="flex items-center gap-3 text-xs">
+                          <span className="w-28 text-gray-300 font-mono truncate">{s.scanner}</span>
+                          <div className="flex-1 bg-[#0e1422] rounded-full h-2 overflow-hidden">
+                            <div
+                              className="bg-sky-500 h-full rounded-full"
+                              style={{ width: `${Math.round((s.cases / (dashboardSummary?.total_dataset_cases || 48)) * 100)}%` }}
+                            />
+                          </div>
+                          <span className="text-gray-400 w-16 text-right">{s.cases} cases</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="bg-[#111827] border border-[#1f2937] rounded-xl p-5 space-y-3">
+                    <h3 className="font-bold text-sm text-white flex items-center gap-2">
+                      <Code2 className="w-4 h-4 text-indigo-400" />
+                      <span>Language Distribution</span>
+                    </h3>
+                    <div className="space-y-2">
+                      {dashboardCharts?.language_chart?.map(l => (
+                        <div key={l.language} className="flex items-center gap-3 text-xs">
+                          <span className="w-20 text-gray-300 font-mono uppercase">{l.language}</span>
+                          <div className="flex-1 bg-[#0e1422] rounded-full h-2 overflow-hidden">
+                            <div
+                              className="bg-indigo-500 h-full rounded-full"
+                              style={{ width: `${Math.round((l.cases / (dashboardSummary?.total_dataset_cases || 48)) * 100)}%` }}
+                            />
+                          </div>
+                          <span className="text-gray-400 w-16 text-right">{l.cases} cases</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Audit Summary */}
+              {dashboardSummary?.manual_audit?.total_decisions_logged > 0 && (
+                <div className="bg-[#111827] border border-[#1f2937] rounded-xl p-5 space-y-3">
+                  <h3 className="font-bold text-sm text-white flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                    <span>Manual Audit Workbench Summary</span>
+                  </h3>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
+                    <div className="bg-[#0e1422] p-3 rounded-lg text-center">
+                      <div className="text-gray-400">Total Decisions</div>
+                      <div className="text-xl font-black text-white mt-1">{dashboardSummary.manual_audit.total_decisions_logged}</div>
+                    </div>
+                    <div className="bg-[#0e1422] p-3 rounded-lg text-center">
+                      <div className="text-gray-400">Cases Reviewed</div>
+                      <div className="text-xl font-black text-emerald-400 mt-1">{dashboardSummary.manual_audit.distinct_cases_reviewed}</div>
+                    </div>
+                    {Object.entries(dashboardSummary.manual_audit.verdicts || {}).map(([v, c]) => (
+                      <div key={v} className="bg-[#0e1422] p-3 rounded-lg text-center">
+                        <div className="text-gray-400 truncate">{v.replace(/_/g, ' ')}</div>
+                        <div className="text-xl font-black text-sky-400 mt-1">{c}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
             </div>
           )}
+
 
           {/* ======================================================== */}
           {/* TAB 2: CODE ANALYZER */}

@@ -17,7 +17,19 @@ class FlawfinderScanner(BaseScanner):
         super().__init__(name="flawfinder", supported_languages=["c", "cpp"])
 
     def is_installed(self) -> bool:
-        return shutil.which("flawfinder") is not None or shutil.which("py") is not None
+        """Check if flawfinder CLI binary is available on PATH."""
+        if shutil.which("flawfinder") is not None:
+            return True
+        # Verify python -m flawfinder actually works (not just that python exists)
+        import subprocess
+        try:
+            res = subprocess.run(
+                [sys.executable, "-m", "flawfinder", "--version"],
+                capture_output=True, timeout=4
+            )
+            return res.returncode == 0
+        except Exception:
+            return False
 
     def get_version(self) -> Optional[str]:
         if not self.is_installed():
@@ -36,7 +48,10 @@ class FlawfinderScanner(BaseScanner):
             return []
 
         findings: List[NormalizedFinding] = []
-        cmd = ["flawfinder", "--csv", "--context", str(file_path)] if shutil.which("flawfinder") else ["py", "-m", "flawfinder", "--csv", "--context", str(file_path)]
+        if shutil.which("flawfinder"):
+            cmd = ["flawfinder", "--csv", "--context", str(file_path)]
+        else:
+            cmd = [sys.executable, "-m", "flawfinder", "--csv", "--context", str(file_path)]
         res = self._safe_run(cmd, timeout=30)
         if res.returncode != 0 and not res.stdout:
             return []
